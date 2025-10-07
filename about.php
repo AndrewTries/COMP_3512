@@ -30,7 +30,7 @@
             <p>My name is Andrew Krawiec. I am a 3rd year student in Computer Information Systems. My hobbies include skiing and board games.</p>
             <p>This assignment is to demonstrate my profficiency with PHP.</p>
             <p>The technologies I am using include VSCode, GitHub, and git.</p>
-            <p><a href="https://github.com/AndrewTries/COMP_3512/tree/main/Assignment1/akraw904">github link</a></p>
+            <p><a href="https://github.com/AndrewTries/COMP_3512-Assignment1">github link</a></p>
         </section>
     </main>
 </body>
