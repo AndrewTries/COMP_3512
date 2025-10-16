@@ -22,19 +22,20 @@
 </head>
 <body>
 <header>
-    <?= nav(); ?>
 </header>
+<?= nav(); ?>
     <main>
         <section>
             <h1>API's</h1>
             <h2>URL</h2>
+            <div id='hover'>
             <ul>
-                <li><a href="/api/companies.php">Companies</a></li>
-                <li><a href="/api/companies.php?ref=ads">Company Stock</a></li>
-                <li><a href="/api/portfolio.php?ref=8">Customer Portfolio</a></li>
-                <li><a href="/api/history.php?ref=ads">Company History</a></li>
+                <li><a href="api/companies.php" title="Retrieve Information of all Companies">Companies</a></li>
+                <li><a href="api/companies.php?ref=ads">Company Stock</a></li>
+                <li><a href="api/portfolio.php?ref=8">Customer Portfolio</a></li>
+                <li><a href="api/history.php?ref=ads">Company History</a></li>
             </ul>
-
+            </div>
             <h2>Description</h2>
             <ul>
                 <li>Returns all the companies/stocks</li>

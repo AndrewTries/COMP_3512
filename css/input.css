@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant hover (&:hover);
+@theme {
+  /* ... */
+  --color-background: #CCFBF1;
+  --color-secondary: #2dd4bf;
+  --color-nav: #2dd4bf;
+  /* --color-background: #FAF9F6; */
+  --color-primary: #1d293d;
+}
+
+.dark {
+  --color-background:#1d293d;
+  --color-primary: #fff;
+}
+
+@layer theme, base, components, utilities;
+
+@layer base {
+    h3 {
+        @apply font-bold;
+    }
+}

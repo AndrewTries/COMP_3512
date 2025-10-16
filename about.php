@@ -22,8 +22,8 @@
 </head>
 <body>
 <header>
-    <?= nav(); ?>
 </header>
+<?= nav(); ?>
     <main>
         <section> 
             <h1>About</h1>

@@ -32,6 +32,8 @@ class CompanyDB {
     "SELECT c.symbol, c.name, c.sector, c.subindustry, c.address, c.exchange, c.website, c.description, c.financials
      FROM companies c";
 
+    private $pdo;
+
     public function __construct($connection) {
         $this->pdo = $connection;
     }
@@ -43,19 +45,19 @@ class CompanyDB {
     }
 
     public function getAllForCompany($symbol){
-        $sql = self::$baseSQL . " WHERE c.symbol=?";
+        $sql = self::$baseSQL . " WHERE c.symbol=UPPER(?)";
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, Array($symbol));
         return $statement->fetchAll();
     }
 
-    public function getAllForUser(){
+    public function getAllForUser($id){
         $sql = self::$baseSQL . " WHERE u.id=?";
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, Array($id));
         return $statement->fetchAll();
     }
 
-    public function getAllForHistory(){
-        $sql = self::$baseSQL . " WHERE c.symbol=?";
+    public function getAllForHistory($symbol){
+        $sql = self::$baseSQL . " WHERE c.symbol=UPPER(?)";
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, Array($symbol));
         return $statement->fetchAll();
         
@@ -69,7 +71,7 @@ class CompanyDB {
         // LEFT JOIN history h ON c.symbol = h.symbol";
     }
 
-    public function getAllForPortfolio(){
+    public function getAllForPortfolio($userid){
         $sql = self::$baseSQL . " WHERE p.userid=?";
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, Array($userid));
         return $statement->fetchAll();
@@ -78,6 +80,8 @@ class CompanyDB {
 
 class HistoryDB {
     private static $baseSQL = "SELECT * FROM history";
+
+    private $pdo;
 
     public function __construct($connection) {
         $this->pdo = $connection;
@@ -90,7 +94,7 @@ class HistoryDB {
     }
 
     public function getAllForHistory($symbol){
-        $sql = self::$baseSQL . " WHERE symbol=?";
+        $sql = self::$baseSQL . " WHERE symbol=UPPER(?)";
         // $sql = $sql . "LIMIT 5";
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, Array($symbol));
         return $statement->fetchAll();
@@ -123,6 +127,8 @@ class HistoryDB {
 }
 
 class PortfolioDB {
+    private $pdo;
+
     private static $baseSQL = "SELECT * FROM portfolio";
 
     private static $portfolioSQL = "SELECT p.symbol symbol, c.name name, c.sector sector, amount, h.close*amount value
@@ -169,7 +175,7 @@ class PortfolioDB {
         return $this->getPortfolio($userid, $sql);
     }
     
-    public function getPortfolioTable($userid){
+    public function getAllForPortfolio($userid){
         $sql = self::$portfolioSQL;
         return $this->getPortfolio($userid, $sql);
     }
@@ -178,9 +184,17 @@ class PortfolioDB {
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, Array($userid));
         return $statement->fetchAll();
     }
+
+    public function getAll() {
+        $sql = self::$baseSQL;
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, null);
+        return $statement->fetchAll();
+    }
 }
 
 class UserDB {
+    private $pdo;
+
     private static $baseSQL = "SELECT id, lastname, firstname FROM users ORDER BY lastname";
 
     public function __construct($connection) {

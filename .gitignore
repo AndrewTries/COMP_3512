@@ -1,2 +1,5 @@
 #ignore info folder
 info/
+node_modules/
+.gitignore
+css/oldstyles.css

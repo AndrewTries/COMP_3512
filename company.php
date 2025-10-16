@@ -37,8 +37,9 @@
 </head>
 <body>
 <header>
-    <?= nav(); ?>
+   
 </header>
+ <?= nav(); ?>
     <main>
         <div class="container">
         <section class="top"> 
