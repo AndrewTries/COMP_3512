@@ -45,5 +45,6 @@
             </ul>
         </section>
     </main>
+    <?php footer(); ?>
 </body>
 </html>

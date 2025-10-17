@@ -33,5 +33,6 @@
             <p><a href="https://github.com/AndrewTries/COMP_3512-Assignment1">github link</a></p>
         </section>
     </main>
+    <?php footer(); ?>
 </body>
 </html>
