@@ -42,42 +42,41 @@ try {
         <header></header>
         <?= nav(); ?>
         <main class="flex-grow">
-            <div class="grid grid-cols-2 p-5">
-                <div class="">
+            <div class="grid md:grid-cols-2 p-5 gap-5">
+                <div class="order-1">
                     <section >
-                        <h1 class="text-xl font-bold">Company Info</h1>
                         <?php
+                        $fin = null;
                         foreach ($companies as $row) {
-                            echo "<h3 class= text-2xl>" . $row['name'] . " (" . $row['symbol'] . ")</h3>";
-                            echo $row['description'] . "<br>";
-                            echo $row['sector'] . "<br>";
-                            echo $row['subindustry'] . "<br>";
+                            echo "<h3 class= 'text-4xl text-center md:text-left md:pl-5'>" . $row['name'] . " (" . $row['symbol'] . ")</h3>";
+                            echo "<div>";
+                            echo "<h1 class='text-xl text-center md:text-left font-bold mt-3 pl-5'>Company Info</h1>";
+                            echo "<div class='grid md:grid-cols-[40%_60%] px-5 text-center md:text-left gap-3'>";
+                            echo "<div>";
+                            echo "Sector: " . $row['sector'] . "<br>";
+                            echo "SubIndustry: " . $row['subindustry'] . "<br>";
                             echo "Address: " . $row['address'] . "<br>";
                             echo "Listed on exchange: " . $row['exchange'] . "<br>";
                             echo "<a class='underline text-sky-500' href = '" . $row['website'] . "'>Company Website</a>";
+                            echo "</div>";
+                            echo "<div>";
+                            echo $row['description'] . "<br>";
+                            echo "</div>";
+                            echo "</div>";
+                            if ($row['financials'] != null) $fin = json_decode($row['financials']);
                         }
                         ?>
                     </section>
                 </div>
-                <div>
+                <div class="order-2">
                     <section>
                         <div class="bg-teal-50 px-3 border-1 rounded-md">
                         <h2 class="text-lg font-bold text-center my-3">3 Year History</h2>
-                        <div class='hidden md:block'>
-                            <div class="overflow-auto grid md:grid-cols-6 border-b-1">
-                                <?php output3Year($history); ?>
-                            </div>
-                            <div>
-                                <p class='text-center py-2'>
-                                    <?php
-                                    if (isset($_GET['userid']) && $_GET['userid'] != null)
-                                        echo "Select a company symbol for more information.";
-                                    else echo "Please choose a user portfolio";
-                                    ?>
-                                </p>
-                            </div>
+                        <div class=''>
+                            <?php
+                            if ($fin != null) { output3Year($fin); ?>
                         </div>
-                        <div class='block md:hidden'>
+                        <div class=''>
                             <?php 
                             // outputHistoryCards($history); 
                             ?>
@@ -85,9 +84,9 @@ try {
                         <?php
                         //     foreach ($companies as $row) {
 
-                        //     $fin = json_decode($row['financials']);
-                        //     echo "<div class='bg-teal-50 px-3 border-1 rounded-md'>";
-                        //     if ($row['financials'] != null) {
+                            // $fin = json_decode($row['financials']);
+                            // echo "<div class='bg-teal-50 px-3 border-1 rounded-md'>";
+                            // if ($row['financials'] != null) {
                         //         echo "<table><tr>";
                         //         foreach ($fin as $name => $item) {
                         //             echo "<th>" . ucfirst($name) . "</th>";
@@ -108,31 +107,21 @@ try {
                         //     } else echo "<p>No Financial Data Availible</p>";
                         //     echo "</div>";
                         // }
+                        } else echo "<p class='text-center'>No Financial Data Availible</p>";
                         ?>
                     </section>
                 </div>
-                <div>
+                <div class="order-4 md:order-3">
                     <section>
                         <div>
                             <?php
                             if ($history != null) { ?>
                                 <div class="bg-teal-50 px-3 border-1 rounded-md">
                                     <h2 class="text-lg font-bold text-center my-3">Detailed History</h2>
-                                    <div class='hidden md:block'>
-                                        <div class="overflow-auto grid md:grid-cols-6 border-b-1">
+                                    <div class=''>
                                             <?php outputHistoryTable($history); ?>
-                                        </div>
-                                        <div>
-                                            <p class='text-center py-2'>
-                                                <?php
-                                                if (isset($_GET['userid']) && $_GET['userid'] != null)
-                                                    echo "Select a company symbol for more information.";
-                                                else echo "Please choose a user portfolio";
-                                                ?>
-                                            </p>
-                                        </div>
                                     </div>
-                                    <div class='block md:hidden'>
+                                    <div class=''>
                                         <?php 
                                         // outputHistoryCards($history); 
                                         ?>
@@ -173,9 +162,9 @@ try {
                         ?>
                     </section>
                 </div>
-                <div>
+                <div class="order-3 md:order-4">
                     <section>
-                        <div class='hidden md:block'>
+                        <div class=''>
                         <?php
                         // echo "<pre>";                
                         // echo print_r($historyMax);
@@ -185,25 +174,26 @@ try {
                         //             echo $item;
                         //         }
                         //     }
-                        echo "<div class='bg-teal-50 px-3 border-1 rounded-md'>";
-                        echo "<h3>History High</h3>";
-                        echo "$" . number_format(current(current($historyMax)), 2) . "<br>";
-                        echo "</div>";
+                        outputCards($historyMax, $historyLow, $totalVolume, $averageVolume);
+                        // echo "<div class='bg-teal-50 px-3 border-1 rounded-md'>";
+                        // echo "<h3>History High</h3>";
+                        // echo "$" . number_format(current(current($historyMax)), 2) . "<br>";
+                        // echo "</div>";
 
-                        echo "<div class='bg-teal-50 px-3 border-1 rounded-md'>";
-                        echo "<h3>History Low</h3>";
-                        echo "$" . number_format(current(current($historyLow)), 2) . "<br>";
-                        echo "</div>";
+                        // echo "<div class='bg-teal-50 px-3 border-1 rounded-md'>";
+                        // echo "<h3>History Low</h3>";
+                        // echo "$" . number_format(current(current($historyLow)), 2) . "<br>";
+                        // echo "</div>";
 
-                        echo "<div class='bg-teal-50 px-3 border-1 rounded-md'>";
-                        echo "<h3>Total Volume</h3>";
-                        echo number_format(current(current($totalVolume)), 2) . "<br>";
-                        echo "</div>";
+                        // echo "<div class='bg-teal-50 px-3 border-1 rounded-md'>";
+                        // echo "<h3>Total Volume</h3>";
+                        // echo number_format(current(current($totalVolume)), 2) . "<br>";
+                        // echo "</div>";
 
-                        echo "<div class='bg-teal-50 px-3 border-1 rounded-md'>";
-                        echo "<h3>Average Volume</h3>";
-                        echo number_format(current(current($averageVolume)), 2) . "<br>";
-                        echo "</div>";
+                        // echo "<div class='bg-teal-50 px-3 border-1 rounded-md'>";
+                        // echo "<h3>Average Volume</h3>";
+                        // echo number_format(current(current($averageVolume)), 2) . "<br>";
+                        // echo "</div>";
                         ?>
                         </div>
                     </section>
