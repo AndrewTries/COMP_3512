@@ -29,9 +29,9 @@
             <h1 class="text-2xl font-bold text-center mt-5">About</h1>
             <div class="mx-auto max-w-sm md:max-w-[40%] p-4">
             <div class="text-center">
-            <p>My name is Andrew Krawiec. I am a 3rd year student in Computer Information Systems. My hobbies include skiing and board games.</p>
-            <p>This assignment is to demonstrate my profficiency with PHP.</p>
-            <p>The coding languages I am using include PHP, HTML ans TailWindCSS.</p>
+            <p class="pb-2">My name is Andrew Krawiec. I am a 3rd year student in Computer Information Systems. My hobbies include skiing and board games.</p>
+            <p class="pb-2">This assignment is to demonstrate my profficiency with PHP.</p>
+            <p class="pb-2">The coding languages I am using include PHP, HTML and TailWindCSS.</p>
             <p>The technologies I am using include VSCode, GitHub, and git.</p>
             <p class="p-4"><a class="text-sky-500 underline" href="https://github.com/AndrewTries/COMP_3512-Assignment1">github link</a></p>
             </div>

@@ -45,11 +45,11 @@ try {
                     <section class="bg-teal-50 md:mr-10 md:px-3 md:pb-4 border-1 rounded-md">
                         <h2 class="text-lg font-bold my-3 text-center place-items-center">Customers</h2>
                         <div class='hidden lg:block'>
+
                             <div class='grid grid-cols-[70%_30%] gap-y-6'>
                                 <?php
                                 outputAllUsers($users);
                                 ?>
-
                             </div>
                         </div>
                         <div class='block lg:hidden'>
@@ -75,7 +75,9 @@ try {
                                 <div class="bg-teal-50 px-3 border-1 rounded-md">
                                     <h2 class="text-lg font-bold text-center my-3">Portfolio Details</h2>
                                     <div class='hidden md:block '>
-                                            <?php outputPortfolioTable($portfolio); ?>
+                                        <?php
+                                        outputPortfolioTable($portfolio);
+                                        ?>
                                     </div>
                                     <div>
                                         <p class='text-center py-2'>
@@ -88,12 +90,14 @@ try {
                                     </div>
                                     <div class='block md:hidden'>
                                         <div class=" overflow-y-auto max-h-[50vh]">
-                                            <?php outputPortfolioCards($portfolio); ?>
+                                            <?php
+                                            outputPortfolioCards($portfolio);
+                                            ?>
                                         </div>
                                     </div>
-                                <?php
-                            } ?>
                                 </div>
+                            <?php
+                            } else echo "<p class='text-center'>Please select a customer portfolio</p>"; ?>
                         </div>
                     </section>
                 </div>

@@ -30,28 +30,26 @@ try {
             <section>
                 <h1 class="text-2xl font-bold text-center mt-5">About</h1>
                 <div class="flex justify-center p-4 mx-4">
-                    <div class="">
-                        <div class="flex flex-col-2 gap-x-5 md:gap-x-15 lg:gap-x-30">
-                            <div class="w-[40%]">
-                                <h3>URL</h3>
-                                <div id='hover'>
-                                    <ul class="list-disc">
-                                        <li><a class="text-sky-500 underline" href="api/companies.php" title="Retrieve Information of all Companies">Companies</a></li>
-                                        <li><a class="text-sky-500 underline" href="api/companies.php?ref=ads">Company Stock</a></li>
-                                        <li><a class="text-sky-500 underline" href="api/portfolio.php?ref=8">Customer Portfolio</a></li>
-                                        <li><a class="text-sky-500 underline" href="api/history.php?ref=ads">Company History</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="w-[60%]">
-                                <h3>Description</h3>
-                                <ul>
-                                    <li>Returns all the companies/stocks</li>
-                                    <li>Return just a specific company/stock</li>
-                                    <li>Returns all the portfolios for a specific customer</li>
-                                    <li>Returns the history information for a specific sample company</li>
+                    <div class="flex flex-col-2 gap-x-5 md:gap-x-15 lg:gap-x-30">
+                        <div class="w-[40%]">
+                            <h3  class="text-center">URL</h3>
+                            <div id='hover'>
+                                <ul class="list-disc">
+                                    <li><a class="text-sky-500 underline" href="api/companies.php" title="Retrieve Information of all Companies">Companies</a></li>
+                                    <li><a class="text-sky-500 underline" href="api/companies.php?ref=ads">Company Stock</a></li>
+                                    <li><a class="text-sky-500 underline" href="api/portfolio.php?ref=8">Customer Portfolio</a></li>
+                                    <li><a class="text-sky-500 underline" href="api/history.php?ref=ads">Company History</a></li>
                                 </ul>
                             </div>
+                        </div>
+                        <div class="w-[60%]">
+                            <h3 class="text-center">Description</h3>
+                            <ul>
+                                <li>Returns all the companies/stocks</li>
+                                <li>Return just a specific company/stock</li>
+                                <li>Returns all the portfolios for a specific customer</li>
+                                <li>Returns the history information for a specific sample company</li>
+                            </ul>
                         </div>
                     </div>
                 </div>

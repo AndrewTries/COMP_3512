@@ -26,8 +26,8 @@ function outputAllCompanies($conn)
 
 function outputHistoryTable($history)
 {
-    echo "<div class='overflow-x-auto'>";
-    echo "<div class='grid grid-cols-6 min-w-[550px]'>";
+    echo "<div class='overflow-auto'>";
+    echo "<div class='grid grid-cols-6 sticky top-0 min-w-[550px] bg-teal-50'>";
     foreach ($history as $id => $arr) {
         foreach ($arr as $name => $item) {
             if ($name != 'id' && $name != 'symbol')
@@ -36,7 +36,7 @@ function outputHistoryTable($history)
         break;
     }
     echo "</div>";
-    echo "<div class=' overflow-y-auto max-h-[50vh] min-w-[550px]'>";
+    echo "<div class=' max-h-[50vh] min-w-[550px]'>";
     echo "<div class='grid grid-cols-6'>";
     foreach ($history as $id => $arr) {
         foreach ($arr as $name => $item) {
